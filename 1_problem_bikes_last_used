@@ -1,0 +1,8 @@
+1. https://platform.stratascratch.com/coding/10176-bikes-last-used?code_type=6
+
+Bikes last used:
+Find the last time each bike was in use. Output both the bike number and the date-timestamp of the bike's last use (i.e., the date-time the bike was returned). Order the results by bikes that were most recently used
+
+Solution 1:
+dc_bikeshare_q1_2012 = dc_bikeshare_q1_2012.groupBy("bike_number").agg(max(col("end_time")).alias("last_time"))\
+                    .orderBy(desc("last_time"))
