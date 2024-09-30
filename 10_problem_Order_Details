@@ -1,0 +1,15 @@
+problem 10: https://platform.stratascratch.com/coding/9913-order-details?code_type=6
+
+Order Details:
+Find order details made by Jill and Eva.
+Consider the Jill and Eva as first names of customers.
+Output the order date, details and cost along with the first name.
+Order records based on the customer id in ascending order.
+
+solution 1:
+customers = customers.filter("first_name='Jill' or first_name='Eva'").select("id","first_name")
+orders = orders.join(customers, orders.cust_id == customers.id,"inner")\
+        .orderBy(customers.id)\
+        .select("first_name","order_date","order_details","total_order_cost")
+# To validate your solution, convert your final pySpark df to a pandas df
+orders.toPandas()
