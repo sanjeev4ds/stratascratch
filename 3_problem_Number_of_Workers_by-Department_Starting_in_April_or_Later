@@ -1,0 +1,10 @@
+problem 3: 
+Number of Workers by Department Starting in April or Later:
+Find the number of workers by department who joined in or after April.
+Output the department name along with the corresponding number of workers.
+Sort records based on the number of workers in descending order.
+
+Solution 1:
+worker= worker.filter(month("joining_date")>=4)\
+        .groupBy("department").agg(count("*").alias("num_workers"))\
+        .orderBy(desc("num_workers"))
