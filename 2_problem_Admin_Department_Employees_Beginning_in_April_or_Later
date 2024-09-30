@@ -1,0 +1,7 @@
+2. https://platform.stratascratch.com/coding/9845-find-the-number-of-employees-working-in-the-admin-department?code_type=6
+
+Admin Department Employees Beginning in April or Later:
+Find the number of employees working in the Admin department that joined in April or later.
+
+Solution 1: 
+worker = worker.filter( (col("department")=='Admin') & (month(col("joining_date"))>=4) ).count()
