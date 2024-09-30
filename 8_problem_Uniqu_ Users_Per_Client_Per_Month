@@ -1,0 +1,8 @@
+problem 8: 
+
+Unique Users Per Client Per Month:
+Write a query that returns the number of unique users per client per month
+
+solution 1:
+fact_events = fact_events.select("client_id","user_id",month("time_id").alias("month"))\
+            .groupBy("client_id","month").agg(countDistinct("user_id").alias("count"))
