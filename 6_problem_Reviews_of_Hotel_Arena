@@ -1,0 +1,9 @@
+problem 6: https://platform.stratascratch.com/coding/10166-reviews-of-hotel-arena?code_type=6
+
+Reviews of Hotel Arena:
+Find the number of rows for each review score earned by 'Hotel Arena'. Output the hotel name (which should be 'Hotel Arena'), review score along with the corresponding number of rows with that score for the specified hotel.
+
+solution 1:
+hotel_reviews = hotel_reviews.filter(col("hotel_name")=="Hotel Arena")\
+                .select("hotel_name","reviewer_score")\
+                .groupBy("hotel_name","reviewer_score").agg(count("*").alias("n_reviews"))
