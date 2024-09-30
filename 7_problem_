@@ -1,0 +1,7 @@
+problem 7: https://platform.stratascratch.com/coding/10128-count-the-number-of-movies-that-abigail-breslin-nominated-for-oscar?code_type=6
+
+Count the number of movies that Abigail Breslin nominated for oscar:
+Count the number of movies that Abigail Breslin was nominated for an oscar.
+
+solution 1:
+oscar_nominees = oscar_nominees.filter(col("nominee")=="Abigail Breslin").select(countDistinct("movie"))
