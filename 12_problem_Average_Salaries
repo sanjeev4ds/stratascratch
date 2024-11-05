@@ -1,0 +1,13 @@
+12. https://platform.stratascratch.com/coding/9917-average-salaries?code_type=6
+
+Average Salaries:
+
+solution 1: 
+import pyspark
+from pyspark.sql.functions import *
+
+department_avgsalary = employee.groupBy("department").agg(avg("salary").alias("avg_salary"))
+employee= employee.join(department_avgsalary,["department"])\
+    .select(employee.department, "first_name", "salary", "avg_salary")
+
+employee.toPandas()
