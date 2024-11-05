@@ -1,0 +1,30 @@
+11. https://platform.stratascratch.com/coding/9663-find-the-most-profitable-company-in-the-financial-sector-of-the-entire-world-along-with-its-continent?code_type=6
+
+Find the most profitable company in the financial sector of the entire world along with its continent:
+
+solution 1:
+import pyspark
+from pyspark.sql.window import Window
+from pyspark.sql.functions import *
+
+forbes_global_2010_2014= forbes_global_2010_2014\
+    .withColumn(
+        "rank",
+        rank().over(Window.orderBy(desc(col("profits"))))
+    )\
+    .where("rank=1")\
+    .select("company","continent")
+
+
+# To validate your solution, convert your final pySpark df to a pandas df
+forbes_global_2010_2014.toPandas()
+
+solution 2: (actual answer to this question is using order by and limit)
+import pyspark
+from pyspark.sql.window import Window
+from pyspark.sql.functions import *
+
+forbes_global_2010_2014= forbes_global_2010_2014\
+    .orderBy(desc("profits"))\
+    .limit(1)\
+    .select("company","continent")
