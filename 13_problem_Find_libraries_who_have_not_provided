@@ -1,0 +1,19 @@
+13. https://platform.stratascratch.com/coding/9924-find-libraries-who-havent-provided-the-email-address-in-2016-but-their-notice-preference-definition-is-set-to-email?code_type=6
+
+Find libraries who haven't provided the email address in circulation year 2016 but their notice preference definition is set to email:
+
+solution 1:
+import pyspark
+from pyspark.sql.functions import *
+
+library_usage = library_usage\
+    .filter(
+        (col("provided_email_address")==False) 
+        & (col("notice_preference_definition")=="email") 
+        & (col("circulation_active_year")==2016)
+    )\
+    .select("home_library_code")\
+    .distinct()
+
+# To validate your solution, convert your final pySpark df to a pandas df
+library_usage.toPandas()
