@@ -1,0 +1,14 @@
+14. https://platform.stratascratch.com/coding/9688-churro-activity-date?code_type=6
+
+Churro Activity Date:
+
+solution 1:
+import pyspark
+from pyspark.sql.functions import *
+
+los_angeles_restaurant_health_inspections = los_angeles_restaurant_health_inspections\
+    .filter( (col("facility_name")=="STREET CHURROS") & (col("score")<95) )\
+    .select("activity_date","pe_description")
+
+# To validate your solution, convert your final pySpark df to a pandas df
+los_angeles_restaurant_health_inspections.toPandas()
